@@ -28,6 +28,7 @@
   {% if winner %}
   <h1>Winner is {{ winner }}!</h1>
   {% endif %}
+
   <table>
     {% for i in range(3) %}
     <tr>
@@ -43,11 +44,18 @@
     </tr>
     {% endfor %}
   </table>
-  {% if winner %}
-  <form method="get" action="/reset">
-    <button type="submit">Reset</button>
+  <br>
+  {% if not gameOver %}
+  <form action="/aiMove">
+    <button type="submit">Computer Move</button>
   </form>
   {% endif %}
+
+  <br>
+  <form method="get" action="{{ url_for('reset') }}">
+    <button type="submit">Reset</button>
+  </form>
+
 </body>
 
 </html>
