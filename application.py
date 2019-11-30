@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, redirect, url_for
 from flask_session import Session
 from tempfile import mkdtemp
 from math import inf
+from random import randint
 
 app = Flask(__name__)
 
@@ -59,6 +60,16 @@ def check_game_winner():
 
 @app.route("/aiMove")
 def aiMove():
+    # return random move if board is empty.
+    empty = True
+    board = session["board"]
+    for row in board:
+        if "X" in row or "O" in row:
+            empty = False
+    if empty == True:
+        row = randint(0, 2)
+        col = randint(0, 2)
+        return redirect(url_for("play", row=row, col=col))
     # recursive max or min value finding function based on possible moves.
     def minimax(board, turn):
         # return a value if the hypothetical game is over.
@@ -101,7 +112,6 @@ def aiMove():
         return value
     # find the row and col of the best move. Need to find the coordinates of the first move that
     # gives best value.
-    board = session["board"]
     turn = session["turn"]
     # make a list of tuples representing possible moves.
     moves = []
@@ -159,7 +169,7 @@ def aiMove():
                 # hypothesize a board with that move
                 board[row][col] = turn
                 # check how good the new board is
-                value = max(value, minimax(board, "X"))
+                value = min(value, minimax(board, "X"))
                 # put the board back to its original state to check the next move
                 board[row][col] = None
                 # return first available 2nd best move.
