@@ -71,6 +71,7 @@ def aiMove():
         col = randint(0, 2)
         return redirect(url_for("play", row=row, col=col))
     # recursive max or min value finding function based on possible moves.
+
     def minimax(board, turn):
         # return a value if the hypothetical game is over.
         winner, gameOver = check_game_winner()
