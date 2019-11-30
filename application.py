@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-app.config["SECRET_KEY"] = """b'\x02e!R@\xaa\x14\x06\xc7\xfa=\x07\x07Z\xf6\xee\xdal\x9f\xc3\xe6\xb6\x01\x82'"""
+app.config["SECRET_KEY"] = "08wytnowyr84a9nwyrobseyorfarbo74tbsilc!@#$^%&*(dfbzisgaoweyusfzodgfca8w3irypyscndpsz"
 Session(app)
 
 
