@@ -1,3 +1,4 @@
 flask
 flask-session
 gunicorn
+heroku config:set SECRET_KEY=`openssl rand -base64 32`
